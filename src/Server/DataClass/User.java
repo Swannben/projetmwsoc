@@ -2,7 +2,19 @@ package Server.DataClass;
 import Interfaces.UserInterf;
 public class User implements UserInterf{
 
-    int studentNumber;
+    Integer studentNumber;
     String password;
 
+    public User(Integer studentNumber,String password){
+        this.studentNumber=studentNumber;
+        this.password=password;
+    }
+
+    public Integer getStudentNumber() {
+        return studentNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }

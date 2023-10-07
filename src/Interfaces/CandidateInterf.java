@@ -1,4 +1,6 @@
 package Interfaces;
 
-public interface CandidateInterf {
+import java.rmi.Remote;
+
+public interface CandidateInterf extends Remote {
 }

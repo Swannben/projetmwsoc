@@ -1,5 +1,7 @@
 package Interfaces;
 
-public interface UserInterf {
+import java.rmi.Remote;
+
+public interface UserInterf extends Remote {
 
 }

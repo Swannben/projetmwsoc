@@ -7,7 +7,7 @@ public interface VotingMaterialInterf extends Remote {
 
     public void addNewVoter(ClientVoteInterface clientVoteInterface);
 
-    public String giveOTP(ClientVoteInterface clientVoteInterface);
+    public String giveOTP(int clientVoteInterface);
 
     public void processVotes(List<int[]> singleUserVotes);
 }

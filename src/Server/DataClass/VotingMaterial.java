@@ -37,7 +37,7 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
     }
 
     @Override
-    public String giveOTP(ClientVoteInterface clientVoteInterface) {
+    public String giveOTP(int clientVoteInterface) {
         return voterAndOTP.get(clientVoteInterface);
     }
 

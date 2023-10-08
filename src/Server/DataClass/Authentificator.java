@@ -2,7 +2,6 @@ package Server.DataClass;
 
 import Interfaces.AuthentificatorIntef;
 import Interfaces.CandidateInterf;
-import Interfaces.ClientVoteInterface;
 import Interfaces.VotingMaterialInterf;
 import Server.ServerMain;
 
@@ -28,7 +27,7 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     }
 
     @Override
-    public VotingMaterialInterf getOtherRef(ClientVoteInterface cvi) {
+    public VotingMaterialInterf getOtherRef(int cvi) {
         ServerMain.votingMaterialInterf.addNewVoter(cvi);
         return ServerMain.votingMaterialInterf;
     }

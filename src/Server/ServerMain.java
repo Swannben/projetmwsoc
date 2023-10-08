@@ -42,8 +42,5 @@ public class ServerMain {
         reg.rebind("displayCan",dispCan);
 
 
-        Registry reg2 = LocateRegistry.getRegistry(2002);
-        ClientVoteInterface cVote = (ClientVoteInterface) reg2.lookup("VotingSystem");
-
     }
 }

@@ -2,6 +2,7 @@ package Client;
 
 import Interfaces.AuthentificatorIntef;
 import Interfaces.ClientVoteInterface;
+import Interfaces.VotingMaterialInterf;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -26,5 +27,14 @@ public class ClientMain {
         Registry reg2 = LocateRegistry.createRegistry(2002);
         ClientVoteInterface clientVote = new ClientVote(20001);
         reg2.rebind("VotingSystem",clientVote);
+
+        VotingMaterialInterf votingMaterialInterf;
+        String otp="";
+        if(stub.authentify(studentNumber,password)) {
+            votingMaterialInterf=stub.getOtherRef(clientVote);
+            otp= votingMaterialInterf.giveOTP(clientVote);
+            votingMaterialInterf.processVotes(clientVote.Voting(stub.getCandidateList()));
+        }
+
     }
 }

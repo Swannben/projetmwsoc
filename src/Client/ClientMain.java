@@ -1,7 +1,6 @@
 package Client;
 
 import Interfaces.AuthentificatorIntef;
-import Interfaces.ClientVoteInterface;
 import Interfaces.DisplayCandidateInterf;
 import Interfaces.VotingMaterialInterf;
 
@@ -39,7 +38,7 @@ public class ClientMain {
                     break;
                 case 3:
                     if (isLoggedIn && votingMaterialInterf!=null)
-                        Vote(votingMaterialInterf);
+                        Vote(votingMaterialInterf,displayStub);
                 default:
                     System.out.println("vous avez entré un nombre refusé. réessayez");
             }
@@ -53,7 +52,11 @@ public class ClientMain {
 
     }
 
-    private static void Vote(VotingMaterialInterf votingMaterialInterf) {
+    private static void Vote(VotingMaterialInterf votingMaterialInterf, DisplayCandidateInterf displayStub) throws RemoteException {
+        //todo ajouter la fonction qui vérifie l'otp
+        ClientVote vote = new ClientVote(20002);
+        ;
+        votingMaterialInterf.processVotes(vote.Voting(displayStub.getCan()));
     }
 /*
     public static VotingMaterialInterf signIn(AuthentificatorIntef stub){

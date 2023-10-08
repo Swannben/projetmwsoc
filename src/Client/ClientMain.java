@@ -39,8 +39,14 @@ public class ClientMain {
                 case 3:
                     if (isLoggedIn && votingMaterialInterf!=null)
                         Vote(votingMaterialInterf,displayStub);
+                case 5:
+                    if (isLoggedIn)
+                        reVote(votingMaterialInterf,displayStub);
+                    else
+                        System.out.println("vous avez entré un nombre refusé. réessayez");
                 default:
                     System.out.println("vous avez entré un nombre refusé. réessayez");
+
             }
         }
         /*
@@ -52,11 +58,22 @@ public class ClientMain {
 
     }
 
+    private static void reVote(VotingMaterialInterf votingMaterialInterf,DisplayCandidateInterf displayStub) throws RemoteException {
+        System.out.println("veuillez entrer votre OTP");
+        String otp = scanner.next();
+        if (votingMaterialInterf.verifyOTP(otp)) {
+            ClientVote vote = new ClientVote(20002);
+            votingMaterialInterf.processVotes(vote.Voting(displayStub.getCan()));
+        } else System.out.println("mauvaise OTP");
+    }
+
+
     private static void Vote(VotingMaterialInterf votingMaterialInterf, DisplayCandidateInterf displayStub) throws RemoteException {
-        //todo ajouter la fonction qui vérifie l'otp
-        ClientVote vote = new ClientVote(20002);
-        ;
-        votingMaterialInterf.processVotes(vote.Voting(displayStub.getCan()));
+        if(votingMaterialInterf.alreadyVoted())
+            System.out.println("vous avez déjà voté");
+        else {
+            reVote(votingMaterialInterf,displayStub);
+        }
     }
 /*
 

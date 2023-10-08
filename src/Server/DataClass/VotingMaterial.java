@@ -22,6 +22,21 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
         return voterAndOTP.get(this.studentNumber);
     }
 
+
+    @Override
+    public Boolean verifyOTP(String otp) {
+
+
+        return voterAndOTP.containsKey(studentNumber) && voterAndOTP.get(studentNumber).equals(otp);
+    }
+
+    @Override
+    public boolean alreadyVoted() {
+        return (individualVotes.containsKey(studentNumber));
+
+    }
+
+
     @Override
     public void processVotes(List<int[]> singleUserVotes) {
         individualVotes.put(this.studentNumber,singleUserVotes);

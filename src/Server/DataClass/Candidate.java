@@ -13,4 +13,17 @@ public class Candidate implements CandidateInterf {
         this.name = name;
     }
 
+    public String getPitch() {
+        return "no pitch for this candidate";
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int getNumber() {
+        return rank;
+    }
 }

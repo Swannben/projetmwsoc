@@ -3,15 +3,18 @@ package Client;
 import Interfaces.CandidateInterf;
 import Interfaces.ClientVoteInterface;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ClientVote implements ClientVoteInterface {
+public class ClientVote extends UnicastRemoteObject implements ClientVoteInterface {
 
 
 
-    ClientVote(){
+    ClientVote(int numport) throws RemoteException {
+        super(numport);
 
     }
 

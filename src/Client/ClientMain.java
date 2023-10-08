@@ -1,6 +1,7 @@
 package Client;
 
 import Interfaces.AuthentificatorIntef;
+import Interfaces.ClientVoteInterface;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -23,7 +24,7 @@ public class ClientMain {
         //if(stub.authentify(studentNumber,password) renvoyer voting material;
 
         Registry reg2 = LocateRegistry.createRegistry(2002);
-        ClientVote clientVote = new ClientVote();
+        ClientVoteInterface clientVote = new ClientVote(20001);
         reg2.rebind("VotingSystem",clientVote);
     }
 }

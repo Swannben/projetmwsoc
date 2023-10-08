@@ -14,7 +14,7 @@ import java.util.Random;
 import static Server.ServerMain.totalVotes;
 
 public class VotingMaterial extends UnicastRemoteObject implements VotingMaterialInterf {
-    private Map<ClientVoteInterface,String> voterAndOTP=new HashMap<>();
+    private Map<Integer,String> voterAndOTP=new HashMap<>();
     String AlphaNumericStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789";
     private Random random=new Random();
 
@@ -32,8 +32,8 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
     }
 
     @Override
-    public void addNewVoter(ClientVoteInterface clientVoteInterface) {
-        voterAndOTP.put(clientVoteInterface,generateOtp());
+    public void addNewVoter(int studentNumber) {
+        voterAndOTP.put(studentNumber,generateOtp());
     }
 
     @Override

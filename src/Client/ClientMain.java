@@ -22,8 +22,6 @@ public class ClientMain {
         AuthentificatorIntef stub=(AuthentificatorIntef) reg.lookup("authentify");
 
 
-        //if(stub.authentify(studentNumber,password) renvoyer voting material;
-
         Registry reg2 = LocateRegistry.createRegistry(2002);
         ClientVoteInterface clientVote = new ClientVote(20001);
         reg2.rebind("VotingSystem",clientVote);

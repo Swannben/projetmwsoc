@@ -27,8 +27,8 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     }
 
     @Override
-    public VotingMaterialInterf getOtherRef(int cvi) {
-        ServerMain.votingMaterialInterf.addNewVoter(cvi);
+    public VotingMaterialInterf getOtherRef(int studentNumber) {
+        ServerMain.votingMaterialInterf.addNewVoter(studentNumber);
         return ServerMain.votingMaterialInterf;
     }
 

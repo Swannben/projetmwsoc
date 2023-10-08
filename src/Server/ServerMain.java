@@ -41,6 +41,8 @@ public class ServerMain {
         while(voteIsOngoing) {
             if(scanner.next().equals("stop")) voteIsOngoing=false;
         }
+        System.out.println("les résultats sont: \n"+ auth.showFinalVotes());
+
 
     }
 }

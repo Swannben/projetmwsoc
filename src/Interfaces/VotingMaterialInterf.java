@@ -14,4 +14,6 @@ public interface VotingMaterialInterf extends Remote {
 
     public void processVotes(List<int[]> singleUserVotes) throws RemoteException;
     public String getIndividualVotes() throws RemoteException;
+
+
 }

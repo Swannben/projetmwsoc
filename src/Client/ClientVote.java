@@ -24,7 +24,7 @@ public class ClientVote extends UnicastRemoteObject implements ClientVoteInterfa
         Scanner scanner = new Scanner(System.in);
         List<int[]> votes = new ArrayList<>();
         for (CandidateInterf c : candidates){
-            System.out.println("how many votes to give to "+c.getName()+" ?");
+            System.out.println("donner combien de voix à "+c.getName()+" ?");
             int[] valueToAdd={c.getNumber(),-1};
             int vote= scanner.nextInt();
             while (vote <= 0 || vote > 4) {

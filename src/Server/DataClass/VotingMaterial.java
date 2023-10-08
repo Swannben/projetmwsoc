@@ -1,48 +1,30 @@
 package Server.DataClass;
 
 import Interfaces.CandidateInterf;
-import Interfaces.ClientVoteInterface;
 import Interfaces.VotingMaterialInterf;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
 
-import static Server.ServerMain.totalVotes;
+import static Server.ServerMain.*;
 
 public class VotingMaterial extends UnicastRemoteObject implements VotingMaterialInterf {
-    private Map<Integer,String> voterAndOTP=new HashMap<>();
-    String AlphaNumericStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789";
-    private Random random=new Random();
+    private int studentNumber;
 
-    public VotingMaterial(int port) throws RemoteException {
-        super(port);
-    }
-
-    private String generateOtp(){
-        String otp="";
-        for(int i=0;i<10;i++){
-            otp+=AlphaNumericStr.charAt(random.nextInt(AlphaNumericStr.length()));
-        }
-        if(voterAndOTP.values().contains(otp)) return generateOtp();
-        return otp;
+    public VotingMaterial(int studentNumber) throws RemoteException {
+        super();
+        this.studentNumber=studentNumber;
     }
 
     @Override
-    public void addNewVoter(int studentNumber) {
-        voterAndOTP.put(studentNumber,generateOtp());
-    }
-
-    @Override
-    public String giveOTP(int clientVoteInterface) {
-        return voterAndOTP.get(clientVoteInterface);
+    public String giveOTP() {
+        return voterAndOTP.get(this.studentNumber);
     }
 
     @Override
     public void processVotes(List<int[]> singleUserVotes) {
+        individualVotes.put(this.studentNumber,singleUserVotes);
         for(int[] voteforCandidate:singleUserVotes){
             CandidateInterf candidateInterf=DisplayCandidate.candidates.stream()
                     .filter(c -> c.getNumber()==voteforCandidate[0])

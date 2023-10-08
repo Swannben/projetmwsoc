@@ -10,21 +10,15 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.List;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ServerMain {
-    public static VotingMaterialInterf votingMaterialInterf;
     public static Map<Candidate,Integer> totalVotes=new HashMap<>();
-
-    static {
-        try {
-            votingMaterialInterf = new VotingMaterial(10003);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    public static Map<Integer, List<int[]>> individualVotes=new HashMap<>();
+    public static Map<Integer,String> voterAndOTP=new HashMap<>();
 
     public static void main(String args[]) throws RemoteException, NotBoundException {
         Scanner scanner =new Scanner(System.in);

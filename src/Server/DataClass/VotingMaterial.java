@@ -40,8 +40,36 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
 
     @Override
     public void processVotes(List<int[]> singleUserVotes) {
-        individualVotes.put(this.studentNumber, singleUserVotes);
-        for (int[] voteforCandidate : singleUserVotes) {
+        if(!individualVotes.containsKey(this.studentNumber)){
+            individualVotes.put(this.studentNumber, singleUserVotes);
+            for (int[] voteforCandidate : singleUserVotes) {
+                    CandidateInterf candidateInterf = DisplayCandidate.candidates.stream()
+                            .filter(c -> {
+                                try {
+                                    return c.getNumber() == voteforCandidate[0];
+                                } catch (RemoteException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            })
+                            .findFirst().orElseThrow();
+                    totalVotes.put((Candidate) candidateInterf, totalVotes.get(candidateInterf) + voteforCandidate[1]);
+            }
+        }
+        else{
+            for (int[] voteforCandidate : individualVotes.get(studentNumber)) {
+                CandidateInterf candidateInterf = DisplayCandidate.candidates.stream()
+                        .filter(c -> {
+                            try {
+                                return c.getNumber() == voteforCandidate[0];
+                            } catch (RemoteException e) {
+                                throw new RuntimeException(e);
+                            }
+                        })
+                        .findFirst().orElseThrow();
+                totalVotes.put((Candidate) candidateInterf, totalVotes.get(candidateInterf) - voteforCandidate[1]);
+            }
+            individualVotes.put(this.studentNumber, singleUserVotes);
+            for (int[] voteforCandidate : singleUserVotes) {
                 CandidateInterf candidateInterf = DisplayCandidate.candidates.stream()
                         .filter(c -> {
                             try {
@@ -52,8 +80,9 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
                         })
                         .findFirst().orElseThrow();
                 totalVotes.put((Candidate) candidateInterf, totalVotes.get(candidateInterf) + voteforCandidate[1]);
-
+            }
         }
+        voterAndOTP.put(this.studentNumber,"alreadyVoted");
     }
     @Override
     public String getIndividualVotes() throws RemoteException {

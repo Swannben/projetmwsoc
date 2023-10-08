@@ -38,7 +38,9 @@ public class ServerMain {
         while (!voteIsOngoing) voteIsOngoing=scanner.next().equals("start");
 
         System.out.println("type stop to end the vote");
-        while(voteIsOngoing) voteIsOngoing=scanner.next().equals("stop");
+        while(voteIsOngoing) {
+            if(scanner.next().equals("stop")) voteIsOngoing=false;
+        }
 
     }
 }

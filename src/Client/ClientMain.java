@@ -35,7 +35,7 @@ public class ClientMain {
                     break;
                 case 2:
                     votingMaterialInterf = stub.logIn(scanner);
-                    //todo ajouter une vérifiaction pour mettre à jour l'otp et isLoggedIn
+                    if(votingMaterialInterf!=null)otp=votingMaterialInterf.giveOTP();
                     break;
                 case 3:
                     if (isLoggedIn && votingMaterialInterf!=null)
@@ -56,26 +56,6 @@ public class ClientMain {
     private static void Vote(VotingMaterialInterf votingMaterialInterf) {
     }
 /*
-    public static VotingMaterialInterf signIn(AuthentificatorIntef stub){
-        int studentNumber=0;
-        String password = "";
-        System.out.println("Bonjour au systeme de vote PNS \n Pour vous athentifier veuillez saisir votre numéro étudiant :");
-        if(scanner.hasNextInt()) studentNumber=scanner.nextInt();
-        stub.signIn();
-        VotingMaterialInterf votingMaterialInterf;
-        otp="";
-        if(stub.authentify(studentNumber,password)) {
-            votingMaterialInterf=stub.getOtherRef(studentNumber);
-            otp= votingMaterialInterf.giveOTP(studentNumber);
-            isSignedIn=true;
-        }else{
-            System.out.println("votre mot de pass ou numéro d'étudiant est faux");
-            isSignedIn=false;
-            return null;
-        }
 
-        System.out.println(studentNumber+ " votre One Time Password(OTP) est"+ otp);
-        return votingMaterialInterf;
-    }
  */
 }

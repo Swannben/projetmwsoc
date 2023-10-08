@@ -5,9 +5,7 @@ import java.util.List;
 
 public interface VotingMaterialInterf extends Remote {
 
-    public void addNewVoter(int studentNumber);
-
-    public String giveOTP(int clientVoteInterface);
+    public String giveOTP();
 
     public void processVotes(List<int[]> singleUserVotes);
 }

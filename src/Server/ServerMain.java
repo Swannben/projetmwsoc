@@ -19,11 +19,10 @@ public class ServerMain {
     public static Map<Candidate,Integer> totalVotes=new HashMap<>();
     public static Map<Integer, List<int[]>> individualVotes=new HashMap<>();
     public static Map<Integer,String> voterAndOTP=new HashMap<>();
+    public static boolean voteIsOngoing=false;
 
     public static void main(String args[]) throws RemoteException, NotBoundException {
         Scanner scanner =new Scanner(System.in);
-        System.out.println("type start to begin the vote");
-        while (!scanner.next().equals("start"));
 
 
 
@@ -35,6 +34,11 @@ public class ServerMain {
         for(CandidateInterf c:DisplayCandidate.candidates){
             totalVotes.put((Candidate) c,0);
         }
+        System.out.println("type start to begin the vote");
+        while (!voteIsOngoing) voteIsOngoing=scanner.next().equals("start");
+
+        System.out.println("type stop to end the vote");
+        while(voteIsOngoing) voteIsOngoing=scanner.next().equals("stop");
 
     }
 }

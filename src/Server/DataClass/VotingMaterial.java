@@ -2,6 +2,7 @@ package Server.DataClass;
 
 import Interfaces.CandidateInterf;
 import Interfaces.VotingMaterialInterf;
+import Server.ServerMain;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

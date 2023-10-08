@@ -19,17 +19,20 @@ public class DisplayCandidate extends UnicastRemoteObject implements DisplayCand
         candidates.add(new CandidateVideo("Lex Luthor", "https://www.youtube.com/watch?v=wFHGnA98jDE"));
     }
 
-    @Override
-    public void DisplayCan() throws RemoteException {
-        for(CandidateInterf c : candidates){
-            System.out.println("candidate number "+ c.getNumber() +": "+c.getName()+"\n son pitch est"+c.getPitch());
-        }
-    }
 
     @Override
     public List<CandidateInterf> getCan() throws RemoteException{
 
         return candidates;
+    }
+
+    @Override
+    public String getShownCandidates() throws RemoteException {
+        String result="";
+        for (CandidateInterf c : getCan()) {
+            result+=("candidate number " + c.getNumber() + ": " + c.getName() + "\n son pitch est" + c.getPitch()+"\n");
+        }
+        return result;
     }
 
 

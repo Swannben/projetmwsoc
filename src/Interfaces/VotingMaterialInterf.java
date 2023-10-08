@@ -8,4 +8,5 @@ public interface VotingMaterialInterf extends Remote {
     public String giveOTP();
 
     public void processVotes(List<int[]> singleUserVotes);
+    public String getIndividualVotes();
 }

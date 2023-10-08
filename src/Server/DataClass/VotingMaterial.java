@@ -32,4 +32,18 @@ public class VotingMaterial extends UnicastRemoteObject implements VotingMateria
             totalVotes.put((Candidate) candidateInterf,totalVotes.get(candidateInterf)+voteforCandidate[1]);
         }
     }
+
+    @Override
+    public String getIndividualVotes() {
+        String yourVotes="Vous avez voté comme suit: \n";
+        for(CandidateInterf candidate:DisplayCandidate.candidates){
+            yourVotes+=candidate.getName();
+            yourVotes+=" : ";
+            yourVotes+=individualVotes.get(this.studentNumber).stream()
+                    .filter(vote -> vote[0]==candidate.getNumber())
+                    .findFirst().orElseThrow()[1];
+            yourVotes+="\n";
+        }
+        return yourVotes;
+    }
 }

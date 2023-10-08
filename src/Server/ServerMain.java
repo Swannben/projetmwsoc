@@ -26,15 +26,15 @@ public class ServerMain {
         while (!scanner.next().equals("start"));
 
 
-        for(CandidateInterf c:DisplayCandidate.candidates){
-            totalVotes.put((Candidate) c,0);
-        }
+
         Registry reg= LocateRegistry.createRegistry(2001);
         AuthentificatorIntef auth= new Authentificator(1001);
         reg.rebind("authentify",auth);
         DisplayCandidateInterf dispCan= new DisplayCandidate(10002);
         reg.rebind("displayCan",dispCan);
-
+        for(CandidateInterf c:DisplayCandidate.candidates){
+            totalVotes.put((Candidate) c,0);
+        }
 
     }
 }

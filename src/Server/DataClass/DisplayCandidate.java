@@ -27,7 +27,7 @@ public class DisplayCandidate extends UnicastRemoteObject implements DisplayCand
     }
 
     @Override
-    public List<CandidateInterf> getCan() {
+    public List<CandidateInterf> getCan() throws RemoteException{
 
         return candidates;
     }

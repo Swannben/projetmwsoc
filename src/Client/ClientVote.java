@@ -27,7 +27,7 @@ public class ClientVote extends UnicastRemoteObject implements ClientVoteInterfa
             System.out.println("how many votes to give to "+c.getName()+" ?");
             int[] valueToAdd={c.getNumber(),-1};
             int vote= scanner.nextInt();
-            while (vote < 0 || vote > 3) {
+            while (vote <= 0 || vote > 4) {
                 System.out.println("a vote should be between 0 and 3");
                 vote= scanner.nextInt();
             }

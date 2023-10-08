@@ -12,7 +12,7 @@ public class ServerMain {
     public static void main(String args[]) throws RemoteException {
         Registry reg= LocateRegistry.createRegistry(2001);
         AuthentificatorIntef auth= new Authentificator(10001);
-        reg.rebind("VotingSystem",auth);
+        reg.rebind("authentify",auth);
 
 
     }

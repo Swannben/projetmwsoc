@@ -24,6 +24,6 @@ public class ClientMain {
 
         Registry reg2 = LocateRegistry.createRegistry(2002);
         ClientVote clientVote = new ClientVote();
-        reg2.rebind("VotingSystem");
+        reg2.rebind("VotingSystem",clientVote);
     }
 }

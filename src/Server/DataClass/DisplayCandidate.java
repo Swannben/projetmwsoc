@@ -24,4 +24,12 @@ public class DisplayCandidate extends UnicastRemoteObject implements DisplayCand
             System.out.println("candidate number "+ c.getNumber() +": "+c.getName()+"\n son pitch est"+c.getPitch());
         }
     }
+
+    @Override
+    public List<CandidateInterf> getCan() {
+
+        return candidates;
+    }
+
+
 }

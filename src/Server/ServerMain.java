@@ -13,5 +13,7 @@ public class ServerMain {
         Registry reg= LocateRegistry.createRegistry(2001);
         AuthentificatorIntef auth= new Authentificator(10001);
         reg.rebind("VotingSystem",auth);
+
+
     }
 }

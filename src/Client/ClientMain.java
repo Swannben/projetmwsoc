@@ -83,7 +83,11 @@ public class ClientMain {
                 }
             }
             if(!stub.checkVotingStatus() && started){
-                System.out.println("Le vote est maintenant clos, voici les résultats :\n"+stub.showFinalVotes());
+                System.out.println("Le vote est maintenant clos, tapez show pour voir les résultats :\n");
+                if (scanner.next().equals("show")){
+                    System.out.println(stub.showFinalVotes());
+                }
+
                 break;
             }
         }

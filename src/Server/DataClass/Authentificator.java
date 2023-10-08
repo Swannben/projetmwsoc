@@ -10,6 +10,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Authentificator extends UnicastRemoteObject implements AuthentificatorIntef {
     private Map<Integer,User> usersDB= new HashMap<>();
@@ -35,5 +36,10 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     @Override
     public List<CandidateInterf> getCandidateList() {
         return DisplayCandidate.candidates;
+    }
+
+    @Override
+    public VotingMaterialInterf logIn(Scanner scanner) {
+        return null;
     }
 }

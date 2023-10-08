@@ -10,4 +10,8 @@ public interface AuthentificatorIntef extends Remote {
     public List<CandidateInterf> getCandidateList() throws RemoteException;
 
     VotingMaterialInterf logIn() throws RemoteException;
+
+    public boolean checkVotingStatus() throws RemoteException;
+
+    public String showFinalVotes() throws RemoteException;
 }

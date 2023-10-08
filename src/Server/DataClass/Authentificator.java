@@ -8,7 +8,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-import static Server.ServerMain.voterAndOTP;
+import static Server.ServerMain.*;
 
 public class Authentificator extends UnicastRemoteObject implements AuthentificatorIntef {
     private Map<Integer,User> usersDB= new HashMap<>();
@@ -36,6 +36,21 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     }
     private void addNewVoter(int studentNumber) {
         voterAndOTP.put(studentNumber,generateOtp());
+    }
+
+
+    @Override
+    public boolean checkVotingStatus() throws RemoteException {
+        return voteIsOngoing;
+    }
+
+    @Override
+    public String showFinalVotes() throws RemoteException {
+        String finalVotes="";
+        for(Candidate candidate:totalVotes.keySet()){
+            finalVotes+=(candidate.getName()+" : "+totalVotes.get(candidate)+"\n");
+        }
+        return finalVotes;
     }
 
     @Override

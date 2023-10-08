@@ -17,14 +17,16 @@ public class ClientMain {
 
     static boolean isLoggedIn=false;
     public static void main(String args[]) throws RemoteException, NotBoundException {
+        boolean started=false;
         String otp;
         VotingMaterialInterf votingMaterialInterf=null;
         Registry reg= LocateRegistry.getRegistry(2001);
         AuthentificatorIntef stub=(AuthentificatorIntef) reg.lookup("authentify");
         DisplayCandidateInterf displayStub= (DisplayCandidateInterf) reg.lookup("displayCan");
         int switchValue=0;
-        while(true){ //potentiellement une interface pourrait nous dire si le vote est fini ?)
-            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1");
+        while(stub.checkVotingStatus()){
+            started=true;
+            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1,");
             if (isLoggedIn) {
                 System.out.print(", pour changer de compte ou régénerer un OTP tapez 2, pour voter tapez 3, pour consulter votre vote tapez 4, pour changer votre vote tapez 5 ");
             }
@@ -66,11 +68,9 @@ public class ClientMain {
                     System.out.println("vous avez entré un nombre refusé. réessayez");
             }
         }
-        /*
-        Registry reg2 = LocateRegistry.createRegistry(2002);
-        ClientVoteInterface clientVote = new ClientVote(20001);
-        reg2.rebind("VotingSystem",clientVote);
-        */
+        if(!stub.checkVotingStatus() && started){
+            System.out.println("Le vote est maintenant clos, voici les résultats :\n"+stub.showFinalVotes());
+        }
 
 
     }

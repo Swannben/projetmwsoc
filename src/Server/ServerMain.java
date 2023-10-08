@@ -24,15 +24,15 @@ public class ServerMain {
     public static void main(String args[]) throws RemoteException, NotBoundException {
         Scanner scanner =new Scanner(System.in);
 
-        for(CandidateInterf c:DisplayCandidate.candidates){
-            totalVotes.put((Candidate) c,0);
-        }
+
         Registry reg= LocateRegistry.createRegistry(2001);
         AuthentificatorIntef auth= new Authentificator(1001);
         reg.rebind("authentify",auth);
         DisplayCandidateInterf dispCan= new DisplayCandidate(10002);
         reg.rebind("displayCan",dispCan);
-
+        for(CandidateInterf c:DisplayCandidate.candidates){
+            totalVotes.put((Candidate) c,0);
+        }
         System.out.println("type start to begin the vote");
         while (!voteIsOngoing) voteIsOngoing=scanner.next().equals("start");
 

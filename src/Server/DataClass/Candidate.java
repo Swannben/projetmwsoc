@@ -1,7 +1,9 @@
 package Server.DataClass;
 import Interfaces.CandidateInterf;
 
-public class Candidate implements CandidateInterf {
+import java.io.Serializable;
+
+public class Candidate implements CandidateInterf, Serializable {
 
     static  int currentRank =0;
     int rank;

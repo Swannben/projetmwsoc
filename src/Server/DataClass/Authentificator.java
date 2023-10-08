@@ -24,7 +24,16 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     }
 
     public boolean authentify(int studentNumber,String password) throws RemoteException{
-        return this.usersDB.containsKey(studentNumber)&&this.usersDB.get(studentNumber).getPassword().equals(password);
+        if(this.usersDB.containsKey(studentNumber)&&this.usersDB.get(studentNumber).getPassword().equals(password)){
+            addNewVoter(studentNumber);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public VotingMaterialInterf getVotingStub(int studentNumber) throws RemoteException {
+        return new VotingMaterial(studentNumber);
     }
     private String generateOtp(){
         String otp="";
@@ -58,24 +67,4 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
         return DisplayCandidate.candidates;
     }
 
-    @Override
-    public VotingMaterialInterf logIn() throws RemoteException {
-        Scanner scanner = new Scanner(System.in);
-        int studentNumber=0;
-        String password = "";
-        VotingMaterialInterf votingMaterialInterf;
-        System.out.println("Veuillez saisir votre numéro étudiant :");
-        if(scanner.hasNextInt()) studentNumber=scanner.nextInt();
-        System.out.println("Veuillez saisir votre numéro étudiant :");
-        if(scanner.hasNext()) password=scanner.next();
-        if(authentify(studentNumber,password)) {
-            votingMaterialInterf=new VotingMaterial(studentNumber);
-            addNewVoter(studentNumber);
-        }else{
-            System.out.println("votre mot de pass ou numéro d'étudiant est faux");
-            return null;
-        }
-        System.out.println(studentNumber+ " votre One Time Password(OTP) est"+ votingMaterialInterf.giveOTP());
-        return votingMaterialInterf;
-    }
 }

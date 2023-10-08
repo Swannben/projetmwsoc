@@ -1,5 +1,6 @@
 package Server.DataClass;
 
+import Interfaces.CandidateInterf;
 import Interfaces.DisplayCandidateInterf;
 
 import java.rmi.RemoteException;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class DisplayCandidate extends UnicastRemoteObject implements DisplayCandidateInterf {
 
-    List<Candidate> candidates;
+    public static List<CandidateInterf> candidates;
 
     public DisplayCandidate(int port) throws RemoteException {
         super(port);
@@ -19,7 +20,7 @@ public class DisplayCandidate extends UnicastRemoteObject implements DisplayCand
 
     @Override
     public void DisplayCan() {
-        for(Candidate c : candidates){
+        for(CandidateInterf c : candidates){
             System.out.println("candidate number "+ c.getNumber() +": "+c.getName()+"\n son pitch est"+c.getPitch());
         }
     }

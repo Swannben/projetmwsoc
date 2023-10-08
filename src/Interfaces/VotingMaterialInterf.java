@@ -1,16 +1,17 @@
 package Interfaces;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public interface VotingMaterialInterf extends Remote {
 
-    public String giveOTP();
+    public String giveOTP() throws RemoteException;
 
-    public Boolean verifyOTP(String otp);
+    public Boolean verifyOTP(String otp) throws RemoteException;
 
-    public boolean alreadyVoted();
+    public boolean alreadyVoted() throws RemoteException;
 
-    public void processVotes(List<int[]> singleUserVotes);
-    public String getIndividualVotes();
+    public void processVotes(List<int[]> singleUserVotes) throws RemoteException;
+    public String getIndividualVotes() throws RemoteException;
 }

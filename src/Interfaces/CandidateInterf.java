@@ -1,10 +1,11 @@
 package Interfaces;
 
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface CandidateInterf extends Remote {
-    public String getName();
-    public int getNumber();
+    public String getName() throws RemoteException;
+    public int getNumber() throws  RemoteException;
 
-    String getPitch();
+    String getPitch() throws RemoteException;
 }

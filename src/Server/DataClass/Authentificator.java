@@ -3,7 +3,6 @@ package Server.DataClass;
 import Interfaces.AuthentificatorIntef;
 import Interfaces.CandidateInterf;
 import Interfaces.VotingMaterialInterf;
-import Server.ServerMain;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,7 +23,7 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
         }
     }
 
-    public boolean authentify(int studentNumber,String password){
+    public boolean authentify(int studentNumber,String password) throws RemoteException{
         return this.usersDB.containsKey(studentNumber)&&this.usersDB.get(studentNumber).getPassword().equals(password);
     }
     private String generateOtp(){
@@ -40,12 +39,13 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
     }
 
     @Override
-    public List<CandidateInterf> getCandidateList() {
+    public List<CandidateInterf> getCandidateList() throws RemoteException{
         return DisplayCandidate.candidates;
     }
 
     @Override
-    public VotingMaterialInterf logIn(Scanner scanner) throws RemoteException {
+    public VotingMaterialInterf logIn() throws RemoteException {
+        Scanner scanner = new Scanner(System.in);
         int studentNumber=0;
         String password = "";
         VotingMaterialInterf votingMaterialInterf;

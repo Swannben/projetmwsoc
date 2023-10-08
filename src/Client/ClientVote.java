@@ -20,7 +20,7 @@ public class ClientVote extends UnicastRemoteObject implements ClientVoteInterfa
 
 
     @Override
-    public List<int[]> Voting(List<CandidateInterf> candidates)  {
+    public List<int[]> Voting(List<CandidateInterf> candidates) throws RemoteException {
         Scanner scanner = new Scanner(System.in);
         List<int[]> votes = new ArrayList<>();
         for (CandidateInterf c : candidates){

@@ -3,12 +3,11 @@ package Interfaces;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.List;
-import java.util.Scanner;
 
 public interface AuthentificatorIntef extends Remote {
-    public boolean authentify(int studentNumber,String password);
+    public boolean authentify(int studentNumber,String password) throws RemoteException;
 
-    public List<CandidateInterf> getCandidateList();
+    public List<CandidateInterf> getCandidateList() throws RemoteException;
 
-    VotingMaterialInterf logIn(Scanner scanner) throws RemoteException;
+    VotingMaterialInterf logIn() throws RemoteException;
 }

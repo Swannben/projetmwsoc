@@ -24,12 +24,12 @@ public class ClientMain {
         DisplayCandidateInterf displayStub= (DisplayCandidateInterf) reg.lookup("displayCan");
         int switchValue=0;
         while(true){ //potentiellement une interface pourrait nous dire si le vote est fini ?)
-            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1,");
+            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1");
             if (isLoggedIn) {
-                System.out.print(" pour changer de compte tapez 2, pour voter tapez 3, pour consulter votre vote tapez 4");
+                System.out.print(", pour changer de compte ou régénerer un OTP tapez 2, pour voter tapez 3, pour consulter votre vote tapez 4, pour changer votre vote tapez 5 ");
             }
             else{
-                System.out.print(" pour vous connecter tapez 2");
+                System.out.print(", pour vous connecter tapez 2");
             }
             if (scanner.hasNextInt()) switchValue=scanner.nextInt();
             switch (switchValue){
@@ -37,7 +37,7 @@ public class ClientMain {
                     displayStub.DisplayCan();
                     break;
                 case 2:
-                    votingMaterialInterf = stub.logIn(scanner);
+                    votingMaterialInterf = stub.logIn();
                     if(votingMaterialInterf!=null){
                         otp=votingMaterialInterf.giveOTP();
                         isLoggedIn=true;

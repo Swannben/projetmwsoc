@@ -12,4 +12,5 @@ public interface VotingMaterialInterf extends Remote {
     public boolean alreadyVoted();
 
     public void processVotes(List<int[]> singleUserVotes);
+    public String getIndividualVotes();
 }

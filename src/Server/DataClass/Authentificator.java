@@ -49,7 +49,6 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
         int studentNumber=0;
         String password = "";
         VotingMaterialInterf votingMaterialInterf;
-        String otp="";
         System.out.println("Veuillez saisir votre numéro étudiant :");
         if(scanner.hasNextInt()) studentNumber=scanner.nextInt();
         System.out.println("Veuillez saisir votre numéro étudiant :");
@@ -61,7 +60,7 @@ public class Authentificator extends UnicastRemoteObject implements Authentifica
             System.out.println("votre mot de pass ou numéro d'étudiant est faux");
             return null;
         }
-        System.out.println(studentNumber+ " votre One Time Password(OTP) est"+ otp);
+        System.out.println(studentNumber+ " votre One Time Password(OTP) est"+ votingMaterialInterf.giveOTP());
         return votingMaterialInterf;
     }
 }

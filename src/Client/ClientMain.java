@@ -24,9 +24,13 @@ public class ClientMain {
         DisplayCandidateInterf displayStub= (DisplayCandidateInterf) reg.lookup("displayCan");
         int switchValue=0;
         while(true){ //potentiellement une interface pourrait nous dire si le vote est fini ?)
-            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1, pour vous connecter tapez 2");
-            if (isLoggedIn)
-                System.out.print(", pour voter tapez 3");
+            System.out.println("Bienvenue dans le système de vote, pour voir les candidats tapez 1,");
+            if (isLoggedIn) {
+                System.out.print(" pour changer de compte tapez 2, pour voter tapez 3, pour consulter votre vote tapez 4");
+            }
+            else{
+                System.out.print(" pour vous connecter tapez 2");
+            }
             if (scanner.hasNextInt()) switchValue=scanner.nextInt();
             switch (switchValue){
                 case 1:
@@ -34,11 +38,25 @@ public class ClientMain {
                     break;
                 case 2:
                     votingMaterialInterf = stub.logIn(scanner);
-                    if(votingMaterialInterf!=null)otp=votingMaterialInterf.giveOTP();
+                    if(votingMaterialInterf!=null){
+                        otp=votingMaterialInterf.giveOTP();
+                        isLoggedIn=true;
+                    }
                     break;
                 case 3:
                     if (isLoggedIn && votingMaterialInterf!=null)
                         Vote(votingMaterialInterf,displayStub);
+                    else{
+                        System.out.println("vous avez entré un nombre refusé. réessayez");
+                    }
+                    break;
+                case 4:
+                    if(isLoggedIn && votingMaterialInterf!=null)
+                        System.out.println(votingMaterialInterf.getIndividualVotes());
+                    else{
+                        System.out.println("vous avez entré un nombre refusé. réessayez");
+                    }
+                    break;
                 case 5:
                     if (isLoggedIn)
                         reVote(votingMaterialInterf,displayStub);
@@ -46,7 +64,6 @@ public class ClientMain {
                         System.out.println("vous avez entré un nombre refusé. réessayez");
                 default:
                     System.out.println("vous avez entré un nombre refusé. réessayez");
-
             }
         }
         /*

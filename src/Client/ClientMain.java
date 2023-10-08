@@ -78,6 +78,7 @@ public class ClientMain {
                             reVote(votingMaterialInterf, displayStub);
                         else
                             System.out.println("vous avez entré un nombre refusé. réessayez");
+                        break;
                     default:
                         System.out.println("vous avez entré un nombre refusé. réessayez");
                 }
